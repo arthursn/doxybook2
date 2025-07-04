@@ -25,3 +25,4 @@ _book/
 !menu.md
 !_navbar.md
 CMakeSettings.json
+.aider*
