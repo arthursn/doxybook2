@@ -166,6 +166,15 @@ int main(int argc, char* argv[]) {
 
             spdlog::info("Loading...");
             doxygen.load(args["input"].as<std::string>());
+            
+            // If wiki naming conventions are enabled, build the mapping first
+            if (config.useWikiNamingConventions) {
+                spdlog::info("Building wiki name mapping...");
+                // Create a temporary generator just to build the mapping
+                Generator tempGenerator(config, doxygen, jsonConverter, templatesPath);
+                // The mapping is now built and stored in g_refidToFilename
+            }
+            
             spdlog::info("Finalizing...");
             doxygen.finalize(plainPrinter, markdownPrinter);
             spdlog::info("Rendering...");
