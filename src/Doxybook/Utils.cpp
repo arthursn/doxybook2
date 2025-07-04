@@ -185,17 +185,29 @@ std::string Doxybook2::Utils::wikiSafeFileName(std::string str) {
     // Replace spaces with hyphens
     str = replaceAll(str, " ", "-");
     
-    // URL encode special characters
+    // Process characters according to Azure DevOps wiki naming conventions
     std::string result;
     for (char c : str) {
-        if (std::isalnum(c) || c == '-' || c == '_' || c == '.') {
-            // These characters are safe in URLs
+        if (std::isalnum(c) || c == '-' || c == '_' || c == '.' || 
+            c == ':' || c == '<' || c == '>' || c == '*' || 
+            c == '?' || c == '|' || c == '"') {
+            // These characters are allowed in Azure DevOps wiki filenames
+            result += c;
+        } else if (c == '/') {
+            // Forward slash is not allowed and should be removed
+            continue;
+        } else if (c == '\\') {
+            // Backslash is not allowed and should be removed
+            continue;
+        } else if (c == '#') {
+            // Hash is not allowed and should be removed
+            continue;
+        } else if (c == '+') {
+            // Plus is allowed as-is
             result += c;
         } else {
-            // URL encode other characters
-            char buf[4];
-            std::snprintf(buf, sizeof(buf), "%%%02X", static_cast<unsigned char>(c));
-            result += buf;
+            // Other characters should be removed
+            continue;
         }
     }
     
