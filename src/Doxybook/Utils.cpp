@@ -188,25 +188,35 @@ std::string Doxybook2::Utils::wikiSafeFileName(std::string str) {
     // Process characters according to Azure DevOps wiki naming conventions
     std::string result;
     for (char c : str) {
-        if (std::isalnum(c) || c == '-' || c == '_' || c == '.' || 
-            c == ':' || c == '<' || c == '>' || c == '*' || 
-            c == '?' || c == '|' || c == '"') {
-            // These characters are allowed in Azure DevOps wiki filenames
+        if (std::isalnum(c) || c == '_' || c == '.' || c == '+') {
+            // These characters are safe in filenames
             result += c;
-        } else if (c == '/') {
-            // Forward slash is not allowed and should be removed
-            continue;
-        } else if (c == '\\') {
-            // Backslash is not allowed and should be removed
-            continue;
-        } else if (c == '#') {
-            // Hash is not allowed and should be removed
-            continue;
-        } else if (c == '+') {
-            // Plus is allowed as-is
+        } else if (c == '-') {
+            // Hyphen is encoded as %2D but can be kept as-is in filenames
             result += c;
+        } else if (c == ':') {
+            // Colon is encoded as %3A
+            result += "%3A";
+        } else if (c == '<') {
+            // Left angle bracket is encoded as %3C
+            result += "%3C";
+        } else if (c == '>') {
+            // Right angle bracket is encoded as %3E
+            result += "%3E";
+        } else if (c == '*') {
+            // Asterisk is encoded as %2A
+            result += "%2A";
+        } else if (c == '?') {
+            // Question mark is encoded as %3F
+            result += "%3F";
+        } else if (c == '|') {
+            // Pipe is encoded as %7C
+            result += "%7C";
+        } else if (c == '"') {
+            // Double quote is encoded as %22
+            result += "%22";
         } else {
-            // Other characters should be removed
+            // Other characters (such as /\#) should be removed
             continue;
         }
     }
