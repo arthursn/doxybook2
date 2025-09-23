@@ -1,15 +1,30 @@
 # Doxybook2
 
+## Maintained Fork
+
+This is a maintained fork of the original [matusnovak/doxybook2](https://github.com/matusnovak/doxybook2) project, which was archived by its original author. This fork continues development and maintenance to ensure Doxybook2 remains functional and up-to-date.
+
+### Changes in this Fork
+- Continued maintenance and bug fixes
+- Updated dependencies and build system
+- Support for modern C++ toolchains
+- GitHub Actions workflow improvements
+
+### Versioning
+This fork continues the version numbering from the original project. The last official release was v1.5.0, and this fork begins at v1.6.0.
+
+---
+
 ## Attention! Project has been archived!
 
-I have decided to archive this repository. This has been a great experience and it makes me happy that many of you have found this tool useful. I wish that I did a better job with the quality of the code, and mainly with maintaining it. This project was started as a toy and I never expected it to become popular. **I am archiving this repository because I want to focus on other things in my life, and my free time has been occupied by other events.** Moreover, I have started to have a burnout programming. If anyone wishes to continue working on this project, please fork it and feel free to contact me (see my GitHub bio for contact details).
+The original author decided to archive this repository. This has been a great experience and it makes many people happy that this tool is useful. This fork continues the project to ensure it remains available and maintained for the community.
 
 **Please also consider using the following alternatives:**
 * [m.css](https://mcss.mosra.cz/documentation/doxygen/) - A modern, mobile-friendly drop-in replacement for the stock Doxygen HTML output
 * [standardese](https://github.com/standardese/standardese) - Standardese aims to be a nextgen Doxygen.
 * [HDoc](https://hdoc.io/) - The modern documentation tool for C++
 
-### Farewell and **thank you to all contributors for fixing bugs and contributing with new functionality!**
+### **Thank you to all contributors for fixing bugs and contributing with new functionality!**
 
 [![build](https://github.com/matusnovak/doxybook2/workflows/build/badge.svg)](https://github.com/matusnovak/doxybook2/actions) [![downloads](https://img.shields.io/github/downloads/matusnovak/doxybook2/total)](https://github.com/matusnovak/doxybook2/releases) [![release](https://img.shields.io/github/v/release/matusnovak/doxybook2)](https://github.com/matusnovak/doxybook2/releases)
 
@@ -88,17 +103,17 @@ This project is not perfect and I will never claim it will be. It does its job a
 
 ## Examples
 
-| Demo | Generator | Theme | Config |
-| ---- | --------- | ----- | ------ |
-| [Link](https://matusnovak.github.io/doxybook2/hugo-learn/classes/classengine_1_1audio_1_1audiobuffer/) | [Hugo](https://gohugo.io/) | [Learn](https://themes.gohugo.io/hugo-theme-learn/) | [.doxybook](https://github.com/matusnovak/doxybook2/tree/master/example/hugo-learn/.doxybook) |
-| [Link](https://matusnovak.github.io/doxybook2/hugo-book/classes/classengine_1_1audio_1_1audiobuffer/) | [Hugo](https://gohugo.io/) | [Book](https://themes.gohugo.io/hugo-book/) | [.doxybook](https://github.com/matusnovak/doxybook2/tree/master/example/hugo-book/.doxybook) |
-| [Link](https://matusnovak.github.io/doxybook2/mkdocs-readthedocs/Classes/classEngine_1_1Audio_1_1AudioBuffer/) | [MkDocs](https://www.mkdocs.org/) | [ReadTheDocs](https://mkdocs.readthedocs.io/en/stable/) | [.doxybook](https://github.com/matusnovak/doxybook2/tree/master/example/mkdocs-readthedocs/.doxybook) |
-| [Link](https://matusnovak.github.io/doxybook2/mkdocs-material/Classes/classEngine_1_1Audio_1_1AudioBuffer/) | [MkDocs](https://www.mkdocs.org/) | [Material](https://squidfunk.github.io/mkdocs-material/) | [.doxybook](https://github.com/matusnovak/doxybook2/tree/master/example/mkdocs-material/.doxybook) |
-| [Link](https://matusnovak.github.io/doxybook2/mkdocs-bootswatch/Classes/classEngine_1_1Audio_1_1AudioBuffer/) | [MkDocs](https://www.mkdocs.org/) | [Bootswatch](http://mkdocs.github.io/mkdocs-bootswatch/) | [.doxybook](https://github.com/matusnovak/doxybook2/tree/master/example/mkdocs-bootswatch/.doxybook) |
-| [Link](https://matusnovak.github.io/doxybook2/vuepress/Classes/classEngine_1_1Audio_1_1AudioBuffer.html) | [VuePress](https://vuepress.vuejs.org/) | Default | [.doxybook](https://github.com/matusnovak/doxybook2/tree/master/example/vuepress/.doxybook) |
-| [Link](https://matusnovak.github.io/doxybook2/gitbook/Classes/classEngine_1_1Audio_1_1AudioBuffer.html) | [GitBook](https://github.com/GitbookIO/gitbook) | Default | [.doxybook](https://github.com/matusnovak/doxybook2/tree/master/example/vuepress/.doxybook) |
-| N/A | [Docsify](https://docsify.js.org/#/) | Default | [.doxybook](https://github.com/matusnovak/doxybook2/tree/master/example/docsify/.doxybook) |
-| [Link](https://matusnovak.github.io/doxybook2/original/classEngine_1_1Audio_1_1AudioBuffer.html) | Original Doxygen | N/A | N/A |
+| Demo                                                                                                           | Generator                                       | Theme                                                    | Config                                                                                                |
+| -------------------------------------------------------------------------------------------------------------- | ----------------------------------------------- | -------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- |
+| [Link](https://matusnovak.github.io/doxybook2/hugo-learn/classes/classengine_1_1audio_1_1audiobuffer/)         | [Hugo](https://gohugo.io/)                      | [Learn](https://themes.gohugo.io/hugo-theme-learn/)      | [.doxybook](https://github.com/matusnovak/doxybook2/tree/master/example/hugo-learn/.doxybook)         |
+| [Link](https://matusnovak.github.io/doxybook2/hugo-book/classes/classengine_1_1audio_1_1audiobuffer/)          | [Hugo](https://gohugo.io/)                      | [Book](https://themes.gohugo.io/hugo-book/)              | [.doxybook](https://github.com/matusnovak/doxybook2/tree/master/example/hugo-book/.doxybook)          |
+| [Link](https://matusnovak.github.io/doxybook2/mkdocs-readthedocs/Classes/classEngine_1_1Audio_1_1AudioBuffer/) | [MkDocs](https://www.mkdocs.org/)               | [ReadTheDocs](https://mkdocs.readthedocs.io/en/stable/)  | [.doxybook](https://github.com/matusnovak/doxybook2/tree/master/example/mkdocs-readthedocs/.doxybook) |
+| [Link](https://matusnovak.github.io/doxybook2/mkdocs-material/Classes/classEngine_1_1Audio_1_1AudioBuffer/)    | [MkDocs](https://www.mkdocs.org/)               | [Material](https://squidfunk.github.io/mkdocs-material/) | [.doxybook](https://github.com/matusnovak/doxybook2/tree/master/example/mkdocs-material/.doxybook)    |
+| [Link](https://matusnovak.github.io/doxybook2/mkdocs-bootswatch/Classes/classEngine_1_1Audio_1_1AudioBuffer/)  | [MkDocs](https://www.mkdocs.org/)               | [Bootswatch](http://mkdocs.github.io/mkdocs-bootswatch/) | [.doxybook](https://github.com/matusnovak/doxybook2/tree/master/example/mkdocs-bootswatch/.doxybook)  |
+| [Link](https://matusnovak.github.io/doxybook2/vuepress/Classes/classEngine_1_1Audio_1_1AudioBuffer.html)       | [VuePress](https://vuepress.vuejs.org/)         | Default                                                  | [.doxybook](https://github.com/matusnovak/doxybook2/tree/master/example/vuepress/.doxybook)           |
+| [Link](https://matusnovak.github.io/doxybook2/gitbook/Classes/classEngine_1_1Audio_1_1AudioBuffer.html)        | [GitBook](https://github.com/GitbookIO/gitbook) | Default                                                  | [.doxybook](https://github.com/matusnovak/doxybook2/tree/master/example/vuepress/.doxybook)           |
+| N/A                                                                                                            | [Docsify](https://docsify.js.org/#/)            | Default                                                  | [.doxybook](https://github.com/matusnovak/doxybook2/tree/master/example/docsify/.doxybook)            |
+| [Link](https://matusnovak.github.io/doxybook2/original/classEngine_1_1Audio_1_1AudioBuffer.html)               | Original Doxygen                                | N/A                                                      | N/A                                                                                                   |
 
 Source markdown files for these examples above: <https://github.com/matusnovak/doxybook2/tree/gh-pages>
 
@@ -309,95 +324,95 @@ Sample config files are provided in the examples folder for each generator and t
 
 The following is a list of config properties, their default value, and description.
 
-| JSON Key | Default Value | Description |
-| -------- | ------------- | ----------- |
-| `copyImages` | `true` | Automatically copy images added into doxygen documentation via `@image`. These images will be copied into folder defined by `imagesFolder` |
-| `sort` | `false` | Sort everything alphabetically. If set to false, the order will stay the same as the order in the Doxygen XML files. |
-| `imagesFolder` | `"images"` | Name of the folder where to copy images. This folder will be automatically created in the output path defined by `--output`. Leave this empty string if you want all of the images to be stored in the root directory (the output directory). |
-| `linkLowercase` | `false` | Convert all markdown links (only links to other markdown files, the C++ related stuff) into lowercase format. Hugo need this to set to `true`. |
-| `linkAndInlineCodeAsHTML` | `false` | Output links as HTML <a> tags and inline code as <code> tags instead of Markdown. If your generated Markdown has links inside of inline code, set this to `true` to correctly render the links. |
-| `indexInFolders` | `false` | Part of the generated markdown output are extra index files. These are more of a list of classes, namespaces, modules, etc. By default these are stored in the root directory (the output diectory). Set to true if you want them to be generated in their respective folders (i.e. class index in Classes folder, etc.) |
-| `mainPageInRoot` | `false` | If a mainpage is defined by Doxygen, then this file will be generated in `Pages/mainpage.md` path. If you want to make it into `index.md` as the root of your website, then set this to true with `mainPageName` set to `"index"`. |
-| `mainPageName` | `"indexpage"` | If a mainpage is defined by Doxygen, then this file will be saved as `indexpage`. |
-| `baseUrl` | `""` | A prefix to put in front of all markdown links (only links to other markdown files). See `linkLowercase` and `linkSuffix` as well. Note hat MkDocs and Hugo will need explicit baseUrl while GitBook uses no base url. VuePress needs this set to `/`. |
-| `linkSuffix` | `".md"` | The suffix to put after all of the markdown links (only links to other markdown files). If using GitBook, leave this to `".md"`, but MkDocs and Hugo needs `"/"` instead. |
-| `fileExt` | `"md"` | The file extension to use when generating markdown files. |
-| `filesFilter` | `[]` | This will filter which files are allowed to be in the output. For example, an array of `[".hpp", ".h"]` will allow only the files that have file extensions `.hpp` or `.h`. When this is empty (by default) then all files are allowed in the output. This also affects `--json` type of output. This does not filter which classes/functions/etc should be extracted from the source files! (For that, use Doxygen's [FILE_PATTERNS](https://www.doxygen.nl/manual/config.html#cfg_file_patterns)) This only affects listing of those files in the output! |
-| `foldersToGenerate` | `["modules", "classes", "files", "pages", "namespaces", "examples"]` | List of folders to create. You can use this to skip generation of some folders, for example you don't want `examples` then remove it from the array. Note, this does not change the name of the folders that will be generated, this only enables them. This is an enum and must be lower case. If you do not set this value in your JSON config file then all of the folders are created. An empty array will not generate anything at all.' |
-| `replaceUnderscoresInAnchors` | `true` | Replace '_' with '-' in anchors. |
-| `useWikiNamingConventions` | `false` | Use Azure DevOps wiki naming conventions for output files. When enabled, special characters in filenames are properly encoded, and index files are placed at the same level as their folders with the folder name. |
+| JSON Key                      | Default Value                                                        | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+| ----------------------------- | -------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `copyImages`                  | `true`                                                               | Automatically copy images added into doxygen documentation via `@image`. These images will be copied into folder defined by `imagesFolder`                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| `sort`                        | `false`                                                              | Sort everything alphabetically. If set to false, the order will stay the same as the order in the Doxygen XML files.                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+| `imagesFolder`                | `"images"`                                                           | Name of the folder where to copy images. This folder will be automatically created in the output path defined by `--output`. Leave this empty string if you want all of the images to be stored in the root directory (the output directory).                                                                                                                                                                                                                                                                                                               |
+| `linkLowercase`               | `false`                                                              | Convert all markdown links (only links to other markdown files, the C++ related stuff) into lowercase format. Hugo need this to set to `true`.                                                                                                                                                                                                                                                                                                                                                                                                              |
+| `linkAndInlineCodeAsHTML`     | `false`                                                              | Output links as HTML <a> tags and inline code as <code> tags instead of Markdown. If your generated Markdown has links inside of inline code, set this to `true` to correctly render the links.                                                                                                                                                                                                                                                                                                                                                             |
+| `indexInFolders`              | `false`                                                              | Part of the generated markdown output are extra index files. These are more of a list of classes, namespaces, modules, etc. By default these are stored in the root directory (the output diectory). Set to true if you want them to be generated in their respective folders (i.e. class index in Classes folder, etc.)                                                                                                                                                                                                                                    |
+| `mainPageInRoot`              | `false`                                                              | If a mainpage is defined by Doxygen, then this file will be generated in `Pages/mainpage.md` path. If you want to make it into `index.md` as the root of your website, then set this to true with `mainPageName` set to `"index"`.                                                                                                                                                                                                                                                                                                                          |
+| `mainPageName`                | `"indexpage"`                                                        | If a mainpage is defined by Doxygen, then this file will be saved as `indexpage`.                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
+| `baseUrl`                     | `""`                                                                 | A prefix to put in front of all markdown links (only links to other markdown files). See `linkLowercase` and `linkSuffix` as well. Note hat MkDocs and Hugo will need explicit baseUrl while GitBook uses no base url. VuePress needs this set to `/`.                                                                                                                                                                                                                                                                                                      |
+| `linkSuffix`                  | `".md"`                                                              | The suffix to put after all of the markdown links (only links to other markdown files). If using GitBook, leave this to `".md"`, but MkDocs and Hugo needs `"/"` instead.                                                                                                                                                                                                                                                                                                                                                                                   |
+| `fileExt`                     | `"md"`                                                               | The file extension to use when generating markdown files.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| `filesFilter`                 | `[]`                                                                 | This will filter which files are allowed to be in the output. For example, an array of `[".hpp", ".h"]` will allow only the files that have file extensions `.hpp` or `.h`. When this is empty (by default) then all files are allowed in the output. This also affects `--json` type of output. This does not filter which classes/functions/etc should be extracted from the source files! (For that, use Doxygen's [FILE_PATTERNS](https://www.doxygen.nl/manual/config.html#cfg_file_patterns)) This only affects listing of those files in the output! |
+| `foldersToGenerate`           | `["modules", "classes", "files", "pages", "namespaces", "examples"]` | List of folders to create. You can use this to skip generation of some folders, for example you don't want `examples` then remove it from the array. Note, this does not change the name of the folders that will be generated, this only enables them. This is an enum and must be lower case. If you do not set this value in your JSON config file then all of the folders are created. An empty array will not generate anything at all.'                                                                                                               |
+| `replaceUnderscoresInAnchors` | `true`                                                               | Replace '_' with '-' in anchors.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
+| `useWikiNamingConventions`    | `false`                                                              | Use Azure DevOps wiki naming conventions for output files. When enabled, special characters in filenames are properly encoded, and index files are placed at the same level as their folders with the folder name.                                                                                                                                                                                                                                                                                                                                          |
 
 The following are a list of config properties that specify the names of the folders. Each folder holds specific group of C++ stuff. Note that the `Classes` folder also holds interfaces, structs, and unions.
 
-| JSON Key | Default Value |
-| -------- | ------------- |
-| `folderGroupsName` | `"Modules"` |
-| `folderClassesName` | `"Classes"` |
-| `folderFilesName` | `"Files"` |
-| `folderRelatedPagesName` | `"Pages"` |
-| `folderNamespacesName` | `"Namespaces"` |
-| `folderExamplesName` | `"Examples"` |
+| JSON Key                 | Default Value  |
+| ------------------------ | -------------- |
+| `folderGroupsName`       | `"Modules"`    |
+| `folderClassesName`      | `"Classes"`    |
+| `folderFilesName`        | `"Files"`      |
+| `folderRelatedPagesName` | `"Pages"`      |
+| `folderNamespacesName`   | `"Namespaces"` |
+| `folderExamplesName`     | `"Examples"`   |
 
 The following is a list of config properties that specify the filenames of the indexes. For example, an index/list of all classes will use `index_classes` filename followed by `fileExt` extension name.
 
-| JSON Key | Default Value |
-| -------- | ------------- |
-| `indexGroupsName` | `"index_groups"` |
-| `indexClassesName` | `"index_classes"` |
-| `indexFilesName` | `"index_files"` |
-| `indexRelatedPagesName` | `"index_pages"` |
-| `indexNamespacesName` | `"index_namespaces"` |
-| `indexExamplesName` | `"index_examples"` |
+| JSON Key                | Default Value        |
+| ----------------------- | -------------------- |
+| `indexGroupsName`       | `"index_groups"`     |
+| `indexClassesName`      | `"index_classes"`    |
+| `indexFilesName`        | `"index_files"`      |
+| `indexRelatedPagesName` | `"index_pages"`      |
+| `indexNamespacesName`   | `"index_namespaces"` |
+| `indexExamplesName`     | `"index_examples"`   |
 
 The following are config properties that specify what template to use for each specific C++ kind. A kind is just a type of the C++ thing (class, namespace, etc.). This also includes properties for files, directories, pages, and modules (alias groups). These templates can be overwritten via `--templates /path/to/templates-folder`.
 
-| JSON Key | Default Value |
-| -------- | ------------- |
-| `templateKindClass` | `"kind_class"` |
-| `templateKindStruct` | `"kind_class"` |
-| `templateKindUnion` | `"kind_class"` |
-| `templateKindInterface` | `"kind_class"` |
+| JSON Key                | Default Value     |
+| ----------------------- | ----------------- |
+| `templateKindClass`     | `"kind_class"`    |
+| `templateKindStruct`    | `"kind_class"`    |
+| `templateKindUnion`     | `"kind_class"`    |
+| `templateKindInterface` | `"kind_class"`    |
 | `templateKindNamespace` | `"kind_nonclass"` |
-| `templateKindGroup` | `"kind_nonclass"` |
-| `templateKindFile` | `"kind_file"` |
-| `templateKindDir` | `"kind_file"` |
-| `templateKindPage` | `"kind_page"` |
-| `templateKindExample` | `"kind_example"` |
+| `templateKindGroup`     | `"kind_nonclass"` |
+| `templateKindFile`      | `"kind_file"`     |
+| `templateKindDir`       | `"kind_file"`     |
+| `templateKindPage`      | `"kind_page"`     |
+| `templateKindExample`   | `"kind_example"`  |
 
 Same as above, but these are related to the index/list files.
 
-| JSON Key | Default Value |
-| -------- | ------------- |
-| `templateIndexClasses` | `"index_classes"` |
-| `templateIndexNamespaces` | `"index_namespaces"` |
-| `templateIndexGroups` | `"index_groups"` |
-| `templateIndexFiles` | `"index_files"` |
-| `templateIndexRelatedPages` | `"index_pages"` |
-| `templateIndexExamples` | `"index_examples"` |
+| JSON Key                    | Default Value        |
+| --------------------------- | -------------------- |
+| `templateIndexClasses`      | `"index_classes"`    |
+| `templateIndexNamespaces`   | `"index_namespaces"` |
+| `templateIndexGroups`       | `"index_groups"`     |
+| `templateIndexFiles`        | `"index_files"`      |
+| `templateIndexRelatedPages` | `"index_pages"`      |
+| `templateIndexExamples`     | `"index_examples"`   |
 
 These properties define the title to use in the templates specified above.
 
-| JSON Key | Default Value |
-| -------- | ------------- |
-| `indexClassesTitle` | `"Classes"` |
-| `indexNamespacesTitle` | `"Namespaces"` |
-| `indexGroupsTitle` | `"Modules"` |
-| `indexFilesTitle` | `"Files"` |
-| `indexRelatedPagesTitle` | `"Pages"` |
-| `indexExamplesTitle` | `"Examples"` |
+| JSON Key                 | Default Value  |
+| ------------------------ | -------------- |
+| `indexClassesTitle`      | `"Classes"`    |
+| `indexNamespacesTitle`   | `"Namespaces"` |
+| `indexGroupsTitle`       | `"Modules"`    |
+| `indexFilesTitle`        | `"Files"`      |
+| `indexRelatedPagesTitle` | `"Pages"`      |
+| `indexExamplesTitle`     | `"Examples"`   |
 
 These properties modify how Latex formulas should be generated.
 
-| JSON Key | Default Value | Description |
-| -------- | ------------- | ----------- |
-| `formulaInlineStart` | `"\\("` | The string to prepend the inline formula with in Markdown. |
-| `formulaInlineEnd` | `"\\)"` | The string to append the inline formula with in Markdown. |
-| `formulaBlockStart` | `"\\["` | The string to prepend the block formula with in Markdown. |
-| `formulaBlockEnd` | `"\\]"` | The string to append the block formula with in Markdown. |
+| JSON Key             | Default Value | Description                                                |
+| -------------------- | ------------- | ---------------------------------------------------------- |
+| `formulaInlineStart` | `"\\("`       | The string to prepend the inline formula with in Markdown. |
+| `formulaInlineEnd`   | `"\\)"`       | The string to append the inline formula with in Markdown.  |
+| `formulaBlockStart`  | `"\\["`       | The string to prepend the block formula with in Markdown.  |
+| `formulaBlockEnd`    | `"\\]"`       | The string to append the block formula with in Markdown.   |
 
 ## Azure DevOps Wiki Support
 
-Doxybook2 supports generating documentation compatible with Azure DevOps wikis through the `useWikiNamingConventions` configuration option.
+Doxybook2 supports generating documentation compatible with Azure DevOps wikis through the `useWikiNamingConventions` configuration option. This feature makes it easy to import your documentation directly into Azure DevOps wikis without manual filename adjustments.
 
 ### Azure DevOps Wiki Naming Conventions
 
@@ -419,6 +434,40 @@ Enable the feature by setting `useWikiNamingConventions: true` in your doxybook2
 ```
 
 This will generate markdown files with names that follow Azure DevOps wiki naming conventions, making it easier to import the documentation into Azure DevOps wikis.
+
+### Examples
+
+Without wiki naming conventions:
+```
+/output
+  /Classes
+    /class_engine_1_1audio_1_1audiobuffer.md
+  /Namespaces
+    /namespace_engine.md
+  index_classes.md
+```
+
+With wiki naming conventions enabled:
+```
+/output
+  /Classes
+    /Engine%3A%3AAudio%3A%3AAudioBuffer.md
+  Classes.md
+  /Namespaces
+    /Engine.md
+  Namespaces.md
+```
+
+### Importing into Azure DevOps Wiki
+
+After generating documentation with `useWikiNamingConventions: true`:
+
+1. Clone your Azure DevOps wiki repository
+2. Copy the generated markdown files into the wiki repository
+3. Commit and push the changes
+4. Your documentation will appear in the wiki with proper navigation
+
+This feature is particularly useful for teams that maintain their API documentation alongside their code in Azure DevOps.
 
 ## Latex formulas
 
