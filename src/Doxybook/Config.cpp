@@ -6,7 +6,7 @@
 
 class ConfigArg {
 public:
-    template <typename T> ConfigArg(T Doxybook2::Config::*ref, const std::string& key) : key(std::move(key)) {
+    template <typename T> ConfigArg(T Doxybook2::Config::* ref, const std::string& key) : key(std::move(key)) {
         loadFunc = [=](const ConfigArg& self, Doxybook2::Config& config, const nlohmann::json& json) {
             try {
                 if (json.contains(self.key)) {
@@ -80,6 +80,7 @@ static const std::vector<ConfigArg> CONFIG_ARGS = {
     ConfigArg(&Doxybook2::Config::formulaBlockStart, "formulaBlockStart"),
     ConfigArg(&Doxybook2::Config::formulaBlockEnd, "formulaBlockEnd"),
     ConfigArg(&Doxybook2::Config::replaceUnderscoresInAnchors, "replaceUnderscoresInAnchors"),
+    ConfigArg(&Doxybook2::Config::useWikiNamingConventions, "useWikiNamingConventions"),
 };
 
 void Doxybook2::loadConfig(Config& config, const std::string& path) {
