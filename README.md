@@ -325,6 +325,7 @@ The following is a list of config properties, their default value, and descripti
 | `filesFilter` | `[]` | This will filter which files are allowed to be in the output. For example, an array of `[".hpp", ".h"]` will allow only the files that have file extensions `.hpp` or `.h`. When this is empty (by default) then all files are allowed in the output. This also affects `--json` type of output. This does not filter which classes/functions/etc should be extracted from the source files! (For that, use Doxygen's [FILE_PATTERNS](https://www.doxygen.nl/manual/config.html#cfg_file_patterns)) This only affects listing of those files in the output! |
 | `foldersToGenerate` | `["modules", "classes", "files", "pages", "namespaces", "examples"]` | List of folders to create. You can use this to skip generation of some folders, for example you don't want `examples` then remove it from the array. Note, this does not change the name of the folders that will be generated, this only enables them. This is an enum and must be lower case. If you do not set this value in your JSON config file then all of the folders are created. An empty array will not generate anything at all.' |
 | `replaceUnderscoresInAnchors` | `true` | Replace '_' with '-' in anchors. |
+| `useWikiNamingConventions` | `false` | Use Azure DevOps wiki naming conventions for output files. When enabled, special characters in filenames are properly encoded, and index files are placed at the same level as their folders with the folder name. |
 
 The following are a list of config properties that specify the names of the folders. Each folder holds specific group of C++ stuff. Note that the `Classes` folder also holds interfaces, structs, and unions.
 
@@ -393,6 +394,31 @@ These properties modify how Latex formulas should be generated.
 | `formulaInlineEnd` | `"\\)"` | The string to append the inline formula with in Markdown. |
 | `formulaBlockStart` | `"\\["` | The string to prepend the block formula with in Markdown. |
 | `formulaBlockEnd` | `"\\]"` | The string to append the block formula with in Markdown. |
+
+## Azure DevOps Wiki Support
+
+Doxybook2 supports generating documentation compatible with Azure DevOps wikis through the `useWikiNamingConventions` configuration option.
+
+### Azure DevOps Wiki Naming Conventions
+
+When enabled, this feature:
+
+1. Properly encodes special characters in filenames according to Azure DevOps wiki requirements
+2. Uses actual file/class names instead of refids for more readable URLs
+3. Places index files at the same level as their folders with the folder name (e.g., `Files.md` next to the `Files` folder)
+4. Ensures all internal links use the wiki-safe filenames
+
+### Usage
+
+Enable the feature by setting `useWikiNamingConventions: true` in your doxybook2 configuration file:
+
+```json
+{
+  "useWikiNamingConventions": true
+}
+```
+
+This will generate markdown files with names that follow Azure DevOps wiki naming conventions, making it easier to import the documentation into Azure DevOps wikis.
 
 ## Latex formulas
 
