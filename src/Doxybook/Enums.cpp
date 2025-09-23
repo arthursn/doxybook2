@@ -334,37 +334,57 @@ std::string Doxybook2::typeToFolderName(const Config& config, const Type type) {
 }
 
 std::string Doxybook2::typeToIndexName(const Config& config, const FolderCategory type) {
+    // Get the folder name and index name based on the category
+    std::string folderName;
+    std::string indexName;
+    
     switch (type) {
         case FolderCategory::MODULES: {
-            return config.indexInFolders && config.useFolders ? config.folderGroupsName + "/" + config.indexGroupsName
-                                                              : config.indexGroupsName;
+            folderName = config.folderGroupsName;
+            indexName = config.indexGroupsName;
+            break;
         }
         case FolderCategory::CLASSES: {
-            return config.indexInFolders && config.useFolders ? config.folderClassesName + "/" + config.indexClassesName
-                                                              : config.indexClassesName;
+            folderName = config.folderClassesName;
+            indexName = config.indexClassesName;
+            break;
         }
         case FolderCategory::NAMESPACES: {
-            return config.indexInFolders && config.useFolders
-                       ? config.folderNamespacesName + "/" + config.indexNamespacesName
-                       : config.indexNamespacesName;
+            folderName = config.folderNamespacesName;
+            indexName = config.indexNamespacesName;
+            break;
         }
         case FolderCategory::FILES: {
-            return config.indexInFolders && config.useFolders ? config.folderFilesName + "/" + config.indexFilesName
-                                                              : config.indexFilesName;
+            folderName = config.folderFilesName;
+            indexName = config.indexFilesName;
+            break;
         }
         case FolderCategory::PAGES: {
-            return config.indexInFolders && config.useFolders
-                       ? config.folderRelatedPagesName + "/" + config.indexRelatedPagesName
-                       : config.indexRelatedPagesName;
+            folderName = config.folderRelatedPagesName;
+            indexName = config.indexRelatedPagesName;
+            break;
         }
         case FolderCategory::EXAMPLES: {
-            return config.indexInFolders && config.useFolders
-                       ? config.folderExamplesName + "/" + config.indexExamplesName
-                       : config.indexExamplesName;
+            folderName = config.folderExamplesName;
+            indexName = config.indexExamplesName;
+            break;
         }
         default: {
             throw EXCEPTION("Type {} not recognised please contant the author!", int(type));
         }
+    }
+    
+    // If wiki naming conventions are enabled and we're using folders, 
+    // use the folder name as the index file name at the same level
+    if (config.useWikiNamingConventions && config.useFolders) {
+        return folderName;
+    }
+    
+    // Otherwise use the original behavior
+    if (config.indexInFolders && config.useFolders) {
+        return folderName + "/" + indexName;
+    } else {
+        return indexName;
     }
 }
 
