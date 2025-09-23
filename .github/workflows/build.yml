@@ -1,13 +1,19 @@
 name: build
 on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: "Environment to deploy to"
+        required: true
+        default: "staging"
   push:
     branches:
-      - '*'
+      - "*"
     tags:
-      - '*'
+      - "*"
   pull_request:
     branches:
-      - 'master'
+      - "master"
 
 jobs:
   build:
@@ -17,34 +23,34 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - name: 'Windows x64'
+          - name: "Windows x64"
             os: windows-latest
             triplet: x64-windows
             vcpkg_dir: 'C:\vcpkg'
-            suffix: 'windows-win64'
-            generator: 'Visual Studio 17 2022'
-            arch: '-A x64'
-          - name: 'Windows x86'
+            suffix: "windows-win64"
+            generator: "Visual Studio 17 2022"
+            arch: "-A x64"
+          - name: "Windows x86"
             os: windows-latest
             triplet: x86-windows
             vcpkg_dir: 'C:\vcpkg'
-            suffix: 'windows-win32'
-            generator: 'Visual Studio 17 2022'
-            arch: '-A Win32'
-          - name: 'Linux x64'
+            suffix: "windows-win32"
+            generator: "Visual Studio 17 2022"
+            arch: "-A Win32"
+          - name: "Linux x64"
             os: ubuntu-latest
             triplet: x64-linux
-            suffix: 'linux-amd64'
-            vcpkg_dir: '/usr/local/share/vcpkg'
-            generator: 'Unix Makefiles'
-            arch: ''
-          - name: 'Mac OSX x64'
+            suffix: "linux-amd64"
+            vcpkg_dir: "/usr/local/share/vcpkg"
+            generator: "Unix Makefiles"
+            arch: ""
+          - name: "Mac OSX x64"
             os: macos-latest
             triplet: x64-osx
-            suffix: 'osx-amd64'
-            vcpkg_dir: '/usr/local/share/vcpkg'
-            generator: 'Unix Makefiles'
-            arch: ''
+            suffix: "osx-amd64"
+            vcpkg_dir: "/usr/local/share/vcpkg"
+            generator: "Unix Makefiles"
+            arch: ""
 
     steps:
       - name: Checkout
@@ -79,10 +85,6 @@ jobs:
               -DCMAKE_TOOLCHAIN_FILE=${{ matrix.vcpkg_dir }}/scripts/buildsystems/vcpkg.cmake \
               .
           else
-            if [ "$RUNNER_OS" == "Linux" ]; then
-              export CC=/usr/bin/gcc-9
-              export CXX=/usr/bin/g++-9
-            fi
             cmake \
               -B ./build \
               -G "${{ matrix.generator }}" \
@@ -131,9 +133,9 @@ jobs:
           echo "::set-output name=path::release/${name}"
 
       - name: Upload artifacts
-        uses: actions/upload-artifact@v1
+        uses: actions/upload-artifact@v4
         with:
-          name: Release
+          name: Release-${{ matrix.suffix }}
           path: release
 
       - name: Changelog
@@ -161,7 +163,18 @@ jobs:
           omitNameDuringUpdate: true
           prerelease: false
           token: ${{ secrets.GITHUB_TOKEN }}
-  
+
+  merge:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Merge Artifacts
+        uses: actions/upload-artifact/merge@v4
+        with:
+          name: Release
+          pattern: Release-*
+          delete-merged: true
+
   pages:
     name: Pages
     needs: [build]
@@ -197,11 +210,11 @@ jobs:
         run: |
           sudo python3 -m pip install mkdocs mkdocs-material mkdocs-bootswatch
 
-# Disabled due to VuePress not supporting Vue 3.x
-#      - name: Download VuePress
-#        shell: bash
-#        run: |
-#          sudo npm install vuepress vue-template-compiler -g
+      # Disabled due to VuePress not supporting Vue 3.x
+      #      - name: Download VuePress
+      #        shell: bash
+      #        run: |
+      #          sudo npm install vuepress vue-template-compiler -g
 
       - name: Download GitBook CLI
         shell: bash
@@ -216,7 +229,7 @@ jobs:
           sudo cp ./doxygen-1.8.17/bin/doxygen /usr/local/bin/doxygen
           sudo chmod +x /usr/local/bin/doxygen
 
-      - uses: actions/download-artifact@v2
+      - uses: actions/download-artifact@v4
         with:
           name: Release
           path: /tmp/release
@@ -293,17 +306,17 @@ jobs:
           hugo
           cp -r ./public ${{ github.workspace }}/public/hugo-book
 
-# Disabled due to VuePress not supporting Vue 3.x
-#      - name: VuePress - Default
-#        shell: bash
-#        run: |
-#          doxybook2 \
-#            --input ./example/doxygen/xml \
-#            --output ./example/vuepress \
-#            --config ./example/vuepress/.doxybook/config.json
-#          cd ./example/vuepress
-#          sudo vuepress build
-#          cp -r ./.vuepress/dist ${{ github.workspace }}/public/vuepress
+      # Disabled due to VuePress not supporting Vue 3.x
+      #      - name: VuePress - Default
+      #        shell: bash
+      #        run: |
+      #          doxybook2 \
+      #            --input ./example/doxygen/xml \
+      #            --output ./example/vuepress \
+      #            --config ./example/vuepress/.doxybook/config.json
+      #          cd ./example/vuepress
+      #          sudo vuepress build
+      #          cp -r ./.vuepress/dist ${{ github.workspace }}/public/vuepress
 
       - name: GitBook - Default
         shell: bash
