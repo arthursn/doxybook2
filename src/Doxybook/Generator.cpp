@@ -325,11 +325,13 @@ std::string Doxybook2::Generator::getWikiFileName(const Node& node) {
         return it->second;
     }
 
-    // For file nodes, use the qualified name which contains the actual filename
+    // For file nodes, use the compound name which contains the actual filename
     std::string nodeName;
     if (node.isFileOrDir()) {
-        nodeName = node.getQualifiedName();
-        spdlog::debug("Using qualified name for file/dir node '{}': '{}'", refid, nodeName);
+        // For file nodes, the compound name is the actual file name (e.g., "main_text.cpp")
+        // instead of the refid (e.g., "main__text_8cpp")
+        nodeName = node.getCompoundName();
+        spdlog::debug("Using compound name for file/dir node '{}': '{}'", refid, nodeName);
     } else {
         // For other nodes, use the name or title if available
         nodeName = !node.getTitle().empty() ? node.getTitle() : node.getName();

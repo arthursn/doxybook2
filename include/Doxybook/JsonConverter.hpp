@@ -5,12 +5,19 @@
 #include "Config.hpp"
 
 namespace Doxybook2 {
+    class Generator;
+    
     class JsonConverter {
     public:
         explicit JsonConverter(const Config& config,
                                const Doxygen& doxygen,
                                const TextPrinter& plainPrinter,
                                const TextPrinter& markdownPrinter);
+        
+        // Set the Generator reference to access wiki name mapping
+        void setGenerator(const Generator* generator) {
+            this->generator = generator;
+        }
 
         nlohmann::json convert(const std::vector<std::string>& vec) const;
         nlohmann::json convert(const Node::ClassReference& klasse) const;
@@ -27,5 +34,6 @@ namespace Doxybook2 {
         const Doxygen& doxygen;
         const TextPrinter& plainPrinter;
         const TextPrinter& markdownPrinter;
+        const Generator* generator = nullptr;
     };
 }

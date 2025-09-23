@@ -2,7 +2,9 @@
 #include <Doxybook/Doxygen.hpp>
 #include <Doxybook/Exception.hpp>
 #include <Doxybook/JsonConverter.hpp>
+#include <Doxybook/Generator.hpp>
 #include <Doxybook/Utils.hpp>
+#include <Doxybook/Enums.hpp>
 #include <iostream>
 #include <nlohmann/json.hpp>
 #include <unordered_set>
@@ -109,6 +111,8 @@ nlohmann::json Doxybook2::JsonConverter::convert(const Node& node) const {
         json["fullname"] = json["name"];
     }
     json["refid"] = node.getRefid();
+    
+    // Just use the node's URL - the Node class should handle wiki-safe filenames
     json["url"] = node.getUrl();
     json["anchor"] = node.getAnchor();
     json["visibility"] = toStr(node.getVisibility());

@@ -90,6 +90,7 @@ Doxybook2::Node::parse(NodeCacheMap& cache, const std::string& inputDir, const N
 
     ptr->xmlPath = refidPath;
     ptr->name = assertChild(compounddef, "compoundname").getText();
+    ptr->compoundName = ptr->name; // Store the compound name for file nodes
     ptr->language = Utils::normalizeLanguage(compounddef.getAttr("language", ""));
     auto kind = toEnumKind(compounddef.getAttr("kind"));
     ptr->kind = (ptr->language == "java" && kind == Kind::ENUM) ? Kind::JAVAENUM : kind;
