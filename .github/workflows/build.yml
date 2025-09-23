@@ -85,10 +85,6 @@ jobs:
               -DCMAKE_TOOLCHAIN_FILE=${{ matrix.vcpkg_dir }}/scripts/buildsystems/vcpkg.cmake \
               .
           else
-            if [ "$RUNNER_OS" == "Linux" ]; then
-              export CC=/usr/bin/gcc-9
-              export CXX=/usr/bin/g++-9
-            fi
             cmake \
               -B ./build \
               -G "${{ matrix.generator }}" \
