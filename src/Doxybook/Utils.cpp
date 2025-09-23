@@ -181,6 +181,63 @@ std::string Doxybook2::Utils::escape(std::string str) {
     return ret;
 }
 
+std::string Doxybook2::Utils::wikiSafeFileName(std::string str) {
+    // Replace spaces with hyphens
+    str = replaceAll(str, " ", "-");
+    
+    // Process characters according to Azure DevOps wiki naming conventions
+    std::string result;
+    for (char c : str) {
+        if (std::isalnum(c) || c == '_' || c == '.' || c == '+') {
+            // These characters are safe in filenames
+            result += c;
+        } else if (c == '-') {
+            // Hyphen is encoded as %2D but can be kept as-is in filenames
+            result += c;
+        } else if (c == ':') {
+            // Colon is encoded as %3A
+            result += "%3A";
+        } else if (c == '<') {
+            // Left angle bracket is encoded as %3C
+            result += "%3C";
+        } else if (c == '>') {
+            // Right angle bracket is encoded as %3E
+            result += "%3E";
+        } else if (c == '*') {
+            // Asterisk is encoded as %2A
+            result += "%2A";
+        } else if (c == '?') {
+            // Question mark is encoded as %3F
+            result += "%3F";
+        } else if (c == '|') {
+            // Pipe is encoded as %7C
+            result += "%7C";
+        } else if (c == '"') {
+            // Double quote is encoded as %22
+            result += "%22";
+        } else {
+            // Other characters (such as /\#) should be removed
+            continue;
+        }
+    }
+    
+    // Remove periods at start and end
+    if (!result.empty() && result[0] == '.') {
+        result = result.substr(1);
+    }
+    if (!result.empty() && result[result.length() - 1] == '.') {
+        result = result.substr(0, result.length() - 1);
+    }
+    
+    // Ensure the filename is not too long (max path length is 235)
+    // We'll limit the filename to 200 characters to be safe
+    if (result.length() > 200) {
+        result = result.substr(0, 200);
+    }
+    
+    return result;
+}
+
 std::vector<std::string> Doxybook2::Utils::split(const std::string& str, const std::string& delim) {
     std::vector<std::string> tokens;
     size_t last = 0;

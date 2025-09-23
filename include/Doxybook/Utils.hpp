@@ -55,5 +55,6 @@ namespace Doxybook2 {
         extern void createDirectory(const std::string& path);
         extern std::string normalizeLanguage(const std::string& language);
         extern std::string replaceNewline(std::string str);
+        extern std::string wikiSafeFileName(std::string str);
     } // namespace Utils
 } // namespace Doxybook2

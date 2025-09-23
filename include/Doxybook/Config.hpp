@@ -114,6 +114,9 @@ namespace Doxybook2 {
 
         // Replace underscores with hyphens in anchors?
         bool replaceUnderscoresInAnchors{true};
+
+        // Use Azure DevOps wiki naming conventions for output files?
+        bool useWikiNamingConventions{false};
     };
 
     void loadConfig(Config& config, const std::string& path);

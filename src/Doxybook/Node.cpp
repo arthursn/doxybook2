@@ -8,8 +8,37 @@
 #include <fmt/format.h>
 #include <functional>
 #include <iostream>
-#include <unordered_map>
 #include <spdlog/spdlog.h>
+#include <unordered_map>
+
+// Global mapping from refid to filename
+std::unordered_map<std::string, std::string> Doxybook2::g_refidToFilename;
+
+// Function to get filename for a refid
+std::string Doxybook2::getFilenameForRefid(const std::string& refid, bool useWikiNaming) {
+    if (useWikiNaming) {
+        auto it = g_refidToFilename.find(refid);
+        if (it != g_refidToFilename.end()) {
+            spdlog::debug("Wiki filename for refid '{}' is '{}'", refid, it->second);
+            return it->second;
+        } else {
+            spdlog::warn("No wiki filename found for refid '{}', using default. Global mapping has {} entries.",
+                refid,
+                g_refidToFilename.size());
+
+            // Print some entries for debugging
+            int count = 0;
+            for (const auto& [r, w] : g_refidToFilename) {
+                spdlog::debug("  {} -> {}", r, w);
+                if (++count >= 5) {
+                    spdlog::debug("  ... and {} more entries", g_refidToFilename.size() - 5);
+                    break;
+                }
+            }
+        }
+    }
+    return Utils::stripAnchor(refid);
+}
 
 class Doxybook2::Node::Temp {
 public:
@@ -61,10 +90,10 @@ Doxybook2::Node::parse(NodeCacheMap& cache, const std::string& inputDir, const N
 
     ptr->xmlPath = refidPath;
     ptr->name = assertChild(compounddef, "compoundname").getText();
+    ptr->compoundName = ptr->name; // Store the compound name for file nodes
     ptr->language = Utils::normalizeLanguage(compounddef.getAttr("language", ""));
     auto kind = toEnumKind(compounddef.getAttr("kind"));
-    ptr->kind = (ptr->language == "java" && kind == Kind::ENUM) ? Kind::JAVAENUM
-                                                                : kind;
+    ptr->kind = (ptr->language == "java" && kind == Kind::ENUM) ? Kind::JAVAENUM : kind;
     ptr->empty = false;
     cache.insert(std::make_pair(ptr->refid, ptr));
 
@@ -89,8 +118,7 @@ Doxybook2::Node::parse(NodeCacheMap& cache, const std::string& inputDir, const N
             // Doxygen outputs Java enum values as variables with empty <type>
             auto typeElement = memberdef.firstChildElement("type");
             bool hasTypeDefined = typeElement ? typeElement.hasText() : false;
-            if (ptr->kind == Kind::JAVAENUM && child->kind == Kind::VARIABLE && !hasTypeDefined)
-            {
+            if (ptr->kind == Kind::JAVAENUM && child->kind == Kind::VARIABLE && !hasTypeDefined) {
                 child->kind = Kind::JAVAENUMCONSTANT;
                 child->type = Type::JAVAENUMCONSTANTS;
             }
@@ -266,7 +294,8 @@ void Doxybook2::Node::finalize(const Config& config,
 
     static const auto anchorMaker = [](const Config& config, const Node& node) {
         if (!node.isStructured() && node.kind != Kind::MODULE) {
-            return "#" + Utils::toLower(toStr(node.kind)) + "-" + Utils::safeAnchorId(node.name, config.replaceUnderscoresInAnchors);
+            return "#" + Utils::toLower(toStr(node.kind)) + "-" +
+                   Utils::safeAnchorId(node.name, config.replaceUnderscoresInAnchors);
         } else {
             return std::string("");
         }
@@ -300,21 +329,36 @@ void Doxybook2::Node::finalize(const Config& config,
                         return urlFolderMaker(config, node);
                     }
                 }
-                return urlFolderMaker(config, node) + Utils::stripAnchor(node.refid) + config.linkSuffix +
-                       anchorMaker(config, node);
+                std::string filename = getFilenameForRefid(node.refid, config.useWikiNamingConventions);
+                spdlog::debug("URL for node '{}': folder='{}', filename='{}', suffix='{}'",
+                    node.refid,
+                    urlFolderMaker(config, node),
+                    filename,
+                    config.linkSuffix);
+                return urlFolderMaker(config, node) + filename + config.linkSuffix + anchorMaker(config, node);
             }
             case Kind::ENUMVALUE: {
                 const auto n = node.parent->parent;
-                return urlFolderMaker(config, *n) + Utils::stripAnchor(n->refid) + config.linkSuffix +
-                       anchorMaker(config, node);
+                std::string filename = getFilenameForRefid(n->refid, config.useWikiNamingConventions);
+                spdlog::debug("URL for enumvalue '{}': folder='{}', parent filename='{}', suffix='{}'",
+                    node.refid,
+                    urlFolderMaker(config, *n),
+                    filename,
+                    config.linkSuffix);
+                return urlFolderMaker(config, *n) + filename + config.linkSuffix + anchorMaker(config, node);
             }
             default: {
                 auto* n = node.parent;
                 if (node.group) {
                     n = node.group;
                 }
-                return urlFolderMaker(config, *n) + Utils::stripAnchor(n->refid) + config.linkSuffix +
-                       anchorMaker(config, node);
+                std::string filename = getFilenameForRefid(n->refid, config.useWikiNamingConventions);
+                spdlog::debug("URL for default node '{}': folder='{}', parent filename='{}', suffix='{}'",
+                    node.refid,
+                    urlFolderMaker(config, *n),
+                    filename,
+                    config.linkSuffix);
+                return urlFolderMaker(config, *n) + filename + config.linkSuffix + anchorMaker(config, node);
             }
         }
     };

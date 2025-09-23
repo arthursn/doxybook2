@@ -42,10 +42,30 @@ namespace Doxybook2 {
             const Filter& filter,
             const Filter& skip);
         bool shouldInclude(const Node& node);
+        std::string getWikiFileName(const Node& node);
+        void buildWikiNameMapping(const Node& parent, const Filter& filter, const Filter& skip);
+        
+    public:
+        // Allow other classes to access the mapping
+        const std::unordered_map<std::string, std::string>& getWikiNameMapping() const {
+            return refidToWikiName;
+        }
+        
+        // Get the wiki-safe filename for a refid
+        std::string getWikiFileNameForRefid(const std::string& refid) const {
+            auto it = refidToWikiName.find(refid);
+            if (it != refidToWikiName.end()) {
+                return it->second;
+            }
+            return refid; // Fall back to refid if not found
+        }
+        
+    private:
 
         const Config& config;
         const Doxygen& doxygen;
         const JsonConverter& jsonConverter;
         Renderer renderer;
+        std::unordered_map<std::string, std::string> refidToWikiName;
     };
 } // namespace Doxybook2
