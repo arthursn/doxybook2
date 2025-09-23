@@ -14,6 +14,12 @@ namespace Doxybook2 {
 
     typedef std::shared_ptr<Node> NodePtr;
     typedef std::unordered_map<std::string, NodePtr> NodeCacheMap;
+    
+    // Global mapping from refid to filename
+    extern std::unordered_map<std::string, std::string> g_refidToFilename;
+    
+    // Function to get filename for a refid
+    std::string getFilenameForRefid(const std::string& refid, bool useWikiNaming);
 
     class Node {
       public:
