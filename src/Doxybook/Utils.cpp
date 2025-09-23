@@ -181,6 +181,41 @@ std::string Doxybook2::Utils::escape(std::string str) {
     return ret;
 }
 
+std::string Doxybook2::Utils::wikiSafeFileName(std::string str) {
+    // Replace spaces with hyphens
+    str = replaceAll(str, " ", "-");
+    
+    // URL encode special characters
+    std::string result;
+    for (char c : str) {
+        if (std::isalnum(c) || c == '-' || c == '_' || c == '.') {
+            // These characters are safe in URLs
+            result += c;
+        } else {
+            // URL encode other characters
+            char buf[4];
+            std::snprintf(buf, sizeof(buf), "%%%02X", static_cast<unsigned char>(c));
+            result += buf;
+        }
+    }
+    
+    // Remove periods at start and end
+    if (!result.empty() && result[0] == '.') {
+        result = result.substr(1);
+    }
+    if (!result.empty() && result[result.length() - 1] == '.') {
+        result = result.substr(0, result.length() - 1);
+    }
+    
+    // Ensure the filename is not too long (max path length is 235)
+    // We'll limit the filename to 200 characters to be safe
+    if (result.length() > 200) {
+        result = result.substr(0, 200);
+    }
+    
+    return result;
+}
+
 std::vector<std::string> Doxybook2::Utils::split(const std::string& str, const std::string& delim) {
     std::vector<std::string> tokens;
     size_t last = 0;
