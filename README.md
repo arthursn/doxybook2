@@ -145,22 +145,16 @@ cd doxybook2
 
 # ensure you are using C++17 compiler
 # Linux:
-export CC=/usr/bin/gcc-9
-epxort CXX=/usr/bin/g++-9
-
-# Install dependencies via vcpkg
-# The 'vcpkg.txt' file contains the list of dependencies to install
-vcpkg install --triplet x64-linux $(cat vcpkg.txt)
+export CC=/usr/bin/gcc
+export CXX=/usr/bin/g++
 
 # Configure the project and use vcpkg toolchain
-mkdir build
 cmake -B ./build -G "Unix Makefiles" \
     -DCMAKE_INSTALL_PREFIX=./install \
     -DCMAKE_BUILD_TYPE=MinSizeRel \
     -DDOXYBOOK_TESTS=ON \
     -DVCPKG_TARGET_TRIPLET=x64-linux \
-    -DCMAKE_TOOLCHAIN_FILE=/usr/local/share/vcpkg/scripts/buildsystems/vcpkg.cmake
-    .
+    -DCMAKE_TOOLCHAIN_FILE="$VCPKG_ROOT/scripts/buildsystems/vcpkg.cmake"
 
 # Build and Install it
 cmake --build ./build --target install --config MinSizeRel
