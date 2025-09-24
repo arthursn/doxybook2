@@ -7,7 +7,7 @@ if(NOT USE_CPM)
   find_package(fmt CONFIG REQUIRED)
   find_package(nlohmann_json CONFIG REQUIRED)
   find_package(spdlog CONFIG REQUIRED)
-  if (MSVC)
+  if(MSVC)
     find_package(Dirent REQUIRED)
   endif()
 endif()
@@ -24,18 +24,23 @@ target_include_directories(${PROJECT_NAME} PUBLIC ${DOXYDOWN_INCLUDE_DIR})
 set_target_properties(${PROJECT_NAME} PROPERTIES CXX_STANDARD 17)
 
 # Install
-install(TARGETS ${PROJECT_NAME}
+install(
+  TARGETS ${PROJECT_NAME}
   EXPORT ${PROJECT_NAME}
   ARCHIVE DESTINATION lib
-  LIBRARY DESTINATION lib
-)
+  LIBRARY DESTINATION lib)
 
-install(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/../../include
-  DESTINATION . FILES_MATCHING PATTERN "*.hpp"
-)
+install(
+  DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/../../include
+  DESTINATION .
+  FILES_MATCHING
+  PATTERN "*.hpp")
 
 # Libraries
-target_link_libraries(${PROJECT_NAME} PUBLIC fmt::fmt fmt::fmt-header-only spdlog::spdlog_header_only pantor::inja nlohmann_json nlohmann_json::nlohmann_json)
+target_link_libraries(
+  ${PROJECT_NAME}
+  PUBLIC fmt::fmt fmt::fmt-header-only spdlog::spdlog_header_only pantor::inja
+         nlohmann_json nlohmann_json::nlohmann_json)
 if(MSVC)
   target_link_libraries(${PROJECT_NAME} PRIVATE Dirent)
 endif()
